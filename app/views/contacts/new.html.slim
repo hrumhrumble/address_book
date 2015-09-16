@@ -1,0 +1,16 @@
+= simple_nested_form_for @contact do |f|
+  div = @contact.errors.full_messages
+
+  = f.input :first_name
+  = f.input :last_name
+
+  = f.simple_fields_for :phones do |i|
+    = i.input :number
+  = f.link_to_add 'Add number', :phones
+
+  = f.simple_fields_for :emails do |i|
+    = i.input :address
+  = f.link_to_add 'Add email', :emails
+
+  = f.submit 'Save'
+

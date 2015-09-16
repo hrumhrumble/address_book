@@ -1,0 +1,4 @@
+div = link_to "#{contact.first_name + contact.last_name}", contact
+div Phones: #{contact.phones.map(&:number)}
+div Emails: #{contact.emails.map(&:address)}
+= link_to 'destroy', contact, method: :delete
