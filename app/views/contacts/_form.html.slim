@@ -1,8 +1,6 @@
-= params.inspect
 = nested_form_for @contact do |f|
-  .bg-danger
-    - @contact.errors.full_messages.each do |msg|
-      div = msg
+  - @contact.errors.full_messages.each do |msg|
+    .alert.alert-danger = msg
   .form-group
     = f.label :first_name
     = f.text_field :first_name, class: 'form-control'
