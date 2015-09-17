@@ -1,2 +1,8 @@
-= link_to 'New Contact', new_contact_path
-div = render @contacts
+= link_to 'New Contact', new_contact_path, class: 'btn btn-success new-contact'
+table.table.table-bordered
+  tr
+    td Name
+    td Phones
+    td Emails
+    td Controls
+  = render @contacts

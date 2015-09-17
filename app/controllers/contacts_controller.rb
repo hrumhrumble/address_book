@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:destroy, :show]
+  before_action :set_contact, only: [:destroy, :show, :edit, :update]
 
   def index
     @contacts = Contact.all
@@ -12,6 +12,19 @@ class ContactsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @contact.update_attributes(contact_params)
+      redirect_to root_path
+      flash[:notice] = "Successfully updated"
+    else
+      render :edit
+    end
+
   end
 
   def create

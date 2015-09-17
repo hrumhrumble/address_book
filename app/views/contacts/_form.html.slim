@@ -1,0 +1,25 @@
+= params.inspect
+= nested_form_for @contact do |f|
+  .bg-danger
+    - @contact.errors.full_messages.each do |msg|
+      div = msg
+  .form-group
+    = f.label :first_name
+    = f.text_field :first_name, class: 'form-control'
+  .form-group
+    = f.label :last_name
+    = f.text_field :last_name, class: 'form-control'
+  .form-group
+    = f.label :phones
+    = f.fields_for :phones do |i|
+      = i.text_field :number, class: 'form-control'
+      = i.link_to_remove "Remove this phone"
+    = f.link_to_add 'Add more phones', :phones
+  .form-group
+    = f.label :emails
+    = f.fields_for :emails do |i|
+      = i.text_field :address, class: 'form-control'
+      = i.link_to_remove "Remove this address"
+    = f.link_to_add 'Add more emails', :emails
+
+  = f.submit 'Save', class: 'btn btn-success'

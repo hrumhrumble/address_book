@@ -1,8 +1,14 @@
-= link_to 'Back', root_path
-div #{@contact.first_name} #{@contact.last_name}
-div
-  | Phones:
-  = @contact.phones.map(&:number)
-div
-  | Emails:
-  = @contact.emails.map(&:address)
+.page_header
+  = render 'shared/links'
+  h1 #{@contact.first_name} #{@contact.last_name}
+
+  h4
+    | Phones:
+    - @contact.phones.each do |phone|
+      span.phone = phone.number
+
+  - unless @contact.emails.empty?
+    h4
+      | Email:
+      - @contact.emails.each do |email|
+        span.address = email.address
