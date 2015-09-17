@@ -32,6 +32,17 @@ blank_validation = (fields) ->
     return true
 
 init = ->
+  share_contact = $('.share-contact form')
+
+  share_contact.on 'ajax:error', ->
+    alert 'Somthing wrong'
+  share_contact.on 'ajax:success', ->
+    $(this).parents('.share-contact').hide()
+    alert 'Contact send'
+
+  $('.send-on-email').on 'click', ->
+    $(this).siblings('.share-contact').toggle()
+
   $('#new_contact').on 'submit', ->
     fields = {
       phone: $(this).find("input[name*=number]"),

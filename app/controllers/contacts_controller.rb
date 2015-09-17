@@ -45,6 +45,23 @@ class ContactsController < ApplicationController
     end
   end
 
+  def send_contact
+    @email = params[:form][:share_email]
+    @contact = {
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        phones: params[:phones],
+        emails: params[:emails]
+    }
+
+    if @email
+      ShareMailer.send_contact(@email, @contact).deliver_later
+    else
+      redirect_to root_path
+    end
+
+  end
+
   private
   def set_contact
     @contact = Contact.find(params[:id])

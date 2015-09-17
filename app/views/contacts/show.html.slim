@@ -7,8 +7,7 @@
     - @contact.phones.each do |phone|
       span.phone = phone.number
 
-  - unless @contact.emails.empty?
-    h4
-      | Email:
-      - @contact.emails.each do |email|
-        span.address = email.address
+  h4
+    | Email:
+    - @contact.emails.each do |email|
+      span.address = email.address
