@@ -2,12 +2,17 @@
   = render 'shared/links'
   h1 #{@contact.first_name} #{@contact.last_name}
 
-  h4
-    | Phones:
-    - @contact.phones.each do |phone|
-      span.phone = phone.number
 
+- unless @contact.phones.empty?
   h4
-    | Email:
-    - @contact.emails.each do |email|
-      span.address = email.address
+    div Phones:
+    ul
+      - @contact.phones.each do |phone|
+        li = phone.number
+
+- unless @contact.emails.empty?
+  h4
+    div Email:
+    ul
+      - @contact.emails.each do |email|
+        li = email.address

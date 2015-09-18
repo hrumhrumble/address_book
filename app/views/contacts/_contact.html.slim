@@ -1,7 +1,7 @@
 tr
   td = link_to "#{contact.first_name} #{contact.last_name}", contact
-  td #{contact.phones.map(&:number)}
-  td #{contact.emails.map(&:address)}
+  td #{contact.phones.map(&:number).join(',')}
+  td #{contact.emails.map(&:address).join(',')}
   td.td_controls
     = link_to 'Edit', edit_contact_path(contact), class: 'btn btn-primary'
     = link_to 'Destroy', contact, method: :delete, class: 'btn btn-danger'
