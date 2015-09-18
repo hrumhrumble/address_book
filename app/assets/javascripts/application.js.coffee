@@ -32,6 +32,10 @@ blank_validation = (fields) ->
     return true
 
 init = ->
+  setTimeout(->
+    $('.alert').fadeOut()
+  , 3000)
+
   share_contact = $('.share-contact form')
 
   share_contact.on 'ajax:error', ->
