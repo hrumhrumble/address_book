@@ -7,7 +7,7 @@ tr
     = link_to 'Destroy', contact, method: :delete, class: 'btn btn-danger'
     = link_to 'Send contact on Email', '#', class: 'btn btn-default send-on-email'
     .share-contact.form-inline
-      = form_for :form, url: send_contact_path, method: :post, remote: true do |f|
+      = form_for :form, url: share_contacts_path, method: :post, remote: true do |f|
         = f.text_field :share_email, class: 'form-control'
         = hidden_field_tag 'first_name', contact.first_name
         = hidden_field_tag 'last_name', contact.last_name

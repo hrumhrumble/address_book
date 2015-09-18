@@ -45,7 +45,7 @@ class ContactsController < ApplicationController
     end
   end
 
-  def send_contact
+  def share
     @email = params[:form][:share_email]
     @contact = {
         first_name: params[:first_name],
@@ -55,7 +55,7 @@ class ContactsController < ApplicationController
     }
 
     if @email
-      ShareMailer.send_contact(@email, @contact).deliver_later
+      ShareMailer.share(@email, @contact).deliver_later
     else
       redirect_to root_path
     end
