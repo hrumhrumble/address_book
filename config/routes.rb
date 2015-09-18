@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :contacts do
     collection do
       post :share
+      post :import
     end
   end
 

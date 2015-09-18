@@ -20,7 +20,7 @@ class ContactsController < ApplicationController
   def update
     if @contact.update_attributes(contact_params)
       redirect_to root_path
-      flash[:notice] = "Successfully updated"
+      flash[:success] = "Successfully updated"
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     if @contact.save
       redirect_to root_path
-      flash[:notice] = 'Contact was created successfully'
+      flash[:success] = 'Contact was created successfully'
     else
       render :new
     end
@@ -39,10 +39,24 @@ class ContactsController < ApplicationController
 
   def destroy
     if @contact.destroy
-      redirect_to root_path, notice: 'Contact removed'
+      redirect_to root_path
+      flash[:success] = 'Contact removed'
     else
       raise 'Unable to destroy contact'
     end
+  end
+
+  def import
+    @file = params[:file]
+    if @file.nil?
+      redirect_to root_path
+      flash[:danger] = 'Empty file'
+    else
+      @file = Contact.import(params[:file])
+      redirect_to root_path
+      flash[:success] = 'Import success'
+    end
+
   end
 
   def share
