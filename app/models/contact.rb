@@ -8,6 +8,23 @@ class Contact < ActiveRecord::Base
 
   accepts_nested_attributes_for :phones, :emails, :allow_destroy => true, reject_if: :all_blank
 
+  def self.to_csv
+    attributes = %w(first_name last_name phones emails)
+    CSV.generate do |csv|
+      csv << attributes
+
+      all.each do |contact|
+        csv << [
+            contact.first_name,
+            contact.last_name,
+            contact.phones.map(&:number).join(','),
+            contact.emails.map(&:address).join(',')
+        ]
+      end
+
+    end
+  end
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       @contact = Contact.where(first_name: row['first_name'], last_name: row['last_name'])
